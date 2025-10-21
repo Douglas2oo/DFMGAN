@@ -443,14 +443,16 @@ def convert_dataset(
         # Load the corresponding mask
         if source_mask is not None:
             img_idx, img_ext = os.path.splitext(image['img_name'])
-            print(f'Processing image {img_idx} with mask {os.path.join(source_mask, f"{img_idx}_mask{img_ext}")}')
+            # print(f'Processing image {img_idx} with mask {os.path.join(source_mask, f"{img_idx}_mask{img_ext}")}')
+            print(f'Processing image {img_idx} with mask {os.path.join(source_mask, f"{img_idx}.png")}')
             # mask = np.array(PIL.Image.open(os.path.join(source_mask, f'{img_idx}_mask_1{img_ext}')))
             # mask = np.array(PIL.Image.open(os.path.join(source_mask, f'{img_idx}_mask{img_ext}')))
             
             parts = img_idx.split('_', 1)
             base = parts[0]                   # "000"
             suffix = '_' + parts[1] if len(parts)>1 else ''   # "_1" 或 ""
-            mask_name = f'{base}_mask{suffix}{img_ext}'
+            # mask_name = f'{base}_mask{suffix}{img_ext}'
+            mask_name = f'{base}{suffix}.png'
             mask_path = os.path.join(source_mask, mask_name)
             mask = np.array(PIL.Image.open(mask_path))
             
